@@ -1,0 +1,8 @@
+# Cada línea de este fichero define los ficheros a copiar de  /home/siga01.stic.ull.es/64/alu0100948387 cada vez que se cierre sesión
+# El comando que se ejecuta exactamente será "rsync -avq  /home/siga01.stic.ull.es/64/alu0100948387/datos/Disco_Duro_Virtual/private/perfilesesit/perfil-ubuntu14.04/ /home/siga01.stic.ull.es/64/alu0100948387/"
+.vim
+.fichero-prueba.txt
+.directorio-ejemplo
+.directorio-ejemplo2/dir-nivel2
+
+

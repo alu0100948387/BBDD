@@ -1,0 +1,661 @@
+SQL> select a
+  2  from asignatura
+  3  where a like (A%);
+where a like (A%)
+               *
+ERROR at line 3:
+ORA-00911: invalid character 
+
+
+SQL> select a
+  2  ;
+
+*
+ERROR at line 2:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> select a
+  2  ;
+
+*
+ERROR at line 2:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> select a
+  2  from asignatura
+  3  where a like (A%);
+where a like (A%)
+               *
+ERROR at line 3:
+ORA-00911: invalid character 
+
+
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> select a
+  2  where a like (A%);
+where a like (A%)
+*
+ERROR at line 2:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> select a
+  2  from asignatura
+  3  where a like (A%);
+where a like (A%)
+               *
+ERROR at line 3:
+ORA-00911: invalid character 
+
+
+SQL> select a
+  2  from asignatura
+  3  where a like ('A%');
+
+A                                                                                                                                                     
+-----------------------------------------------------------                                                                                           
+Almacenes de Datos                                                                                                                                    
+Algebra                                                                                                                                               
+Astronomia                                                                                                                                            
+Analisis Complejo                                                                                                                                     
+
+SQL> select a
+  2  from asignatura
+  3  where a like ('%A');
+
+no rows selected
+
+SQL> 
+SQL> select a
+  2  
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> select a
+  2  from asignatura
+  3  where a like ('%a');
+
+A                                                                                                                                                     
+-----------------------------------------------------------                                                                                           
+Informatica Basica                                                                                                                                    
+Algebra                                                                                                                                               
+Astronomia                                                                                                                                            
+Ensenanza de la matematica                                                                                                                            
+
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> select a
+  2  from asignatura
+  3  where a like ('%Datos%');
+
+A                                                                                                                                                     
+-----------------------------------------------------------                                                                                           
+Almacenes de Datos                                                                                                                                    
+
+SQL> 
+SQL> 
+SQL> 
+SQL> select dni
+  2  from profesor
+  3  where p like ('__r%');
+
+       DNI                                                                                                                                            
+----------                                                                                                                                            
+      2222                                                                                                                                            
+      4444                                                                                                                                            
+      6666                                                                                                                                            
+      7777                                                                                                                                            
+
+SQL> select dni
+  2  where p like ('__r%');
+where p like ('__r%')
+*
+ERROR at line 2:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> select dni
+  2  from profesor
+  3  where p like ('__r%');
+
+       DNI                                                                                                                                            
+----------                                                                                                                                            
+      2222                                                                                                                                            
+      4444                                                                                                                                            
+      6666                                                                                                                                            
+      7777                                                                                                                                            
+
+SQL> select dni
+  2  from profesor
+  3  where (length (p) <= 5);
+
+       DNI                                                                                                                                            
+----------                                                                                                                                            
+      1111                                                                                                                                            
+      3333                                                                                                                                            
+      4444                                                                                                                                            
+      5555                                                                                                                                            
+      7777                                                                                                                                            
+      1010                                                                                                                                            
+
+6 rows selected.
+
+SQL> select p
+  2  from profesor natural join plan_docente
+  3  where (ff is_not null);
+where (ff is_not null)
+          *
+ERROR at line 3:
+ORA-00920: invalid relational operator 
+
+
+SQL> select p
+  2  from profesor natural join plan_docente
+  3  where (ff is not null);
+
+P                                                                                                                                                     
+------------------------------------------------------------                                                                                          
+David                                                                                                                                                 
+David                                                                                                                                                 
+Juan                                                                                                                                                  
+Carlos                                                                                                                                                
+Maria                                                                                                                                                 
+Carmen                                                                                                                                                
+
+6 rows selected.
+
+SQL> 
+SQL> from profesor natural join plan_docente
+SP2-0734: unknown command beginning "from profe..." - rest of line ignored.
+SQL> select p
+  2  from profesor natural join plan_docente
+  3  where (ff is null);
+
+P                                                                                                                                                     
+------------------------------------------------------------                                                                                          
+David                                                                                                                                                 
+Juan                                                                                                                                                  
+Soledad                                                                                                                                               
+Carlos                                                                                                                                                
+Jose Manuel                                                                                                                                           
+Pedro                                                                                                                                                 
+Pedro                                                                                                                                                 
+Maria                                                                                                                                                 
+Maria                                                                                                                                                 
+Ivan                                                                                                                                                  
+Mario                                                                                                                                                 
+Francisco                                                                                                                                             
+Angela                                                                                                                                                
+
+13 rows selected.
+
+SQL> select p
+  2  from profesor natural join plan_docente
+  3  where (cas = 8);
+
+P                                                                                                                                                     
+------------------------------------------------------------                                                                                          
+Juan                                                                                                                                                  
+Juan                                                                                                                                                  
+Jose Manuel                                                                                                                                           
+
+SQL> select *
+  2  from plan_docente
+  3  order by ff;
+
+       DNI        CAS        CTA        CPA        CLA FI        FF                                                                                   
+---------- ---------- ---------- ---------- ---------- --------- ---------                                                                            
+      2222          3        1.5          0        1.5 01-SEP-06 31-AUG-07                                                                            
+      1010          2        1.5        1.5          3 01-SEP-05 31-AUG-08                                                                            
+      1010          9          3          0          3 01-SEP-08 31-AUG-09                                                                            
+      1111          8          3        1.5        1.5 01-SEP-07 31-AUG-09                                                                            
+      4444          4        1.5          0        1.5 01-SEP-08 31-AUG-10                                                                            
+      6666         10          3        1.5        1.5 01-SEP-08 31-AUG-11                                                                            
+      1010          9        1.5          0        1.5 01-SEP-09                                                                                      
+      9999          7          3          3          0 01-SEP-10                                                                                      
+      5555          6          3          3          0 31-MAR-10                                                                                      
+      8888         11          6          0          0 01-SEP-09                                                                                      
+      2020          3        1.5          0        1.5 01-SEP-08                                                                                      
+      7777         12        4.5          3          0 01-SEP-10                                                                                      
+      3333          9        1.5          0        1.5 01-SEP-09                                                                                      
+      2222          4        1.5          0        1.5 01-SEP-09                                                                                      
+      3030          8          0        1.5        1.5 01-SEP-09                                                                                      
+      1111          8          3          0          0 01-SEP-09                                                                                      
+      4444          5          3          0          0 01-SEP-10                                                                                      
+      4444          1          3        1.5        1.5 01-SEP-11                                                                                      
+      3333          2        1.5        1.5          3 01-SEP-08                                                                                      
+
+19 rows selected.
+
+SQL> select *
+  2  from plan_docente
+  3  order by ff;
+
+       DNI        CAS        CTA        CPA        CLA FI        FF                                                                                   
+---------- ---------- ---------- ---------- ---------- --------- ---------                                                                            
+      2222          3        1.5          0        1.5 01-SEP-06 31-AUG-07                                                                            
+      1010          2        1.5        1.5          3 01-SEP-05 31-AUG-08                                                                            
+      1010          9          3          0          3 01-SEP-08 31-AUG-09                                                                            
+      1111          8          3        1.5        1.5 01-SEP-07 31-AUG-09                                                                            
+      4444          4        1.5          0        1.5 01-SEP-08 31-AUG-10                                                                            
+      6666         10          3        1.5        1.5 01-SEP-08 31-AUG-11                                                                            
+      1010          9        1.5          0        1.5 01-SEP-09                                                                                      
+      9999          7          3          3          0 01-SEP-10                                                                                      
+      5555          6          3          3          0 31-MAR-10                                                                                      
+      8888         11          6          0          0 01-SEP-09                                                                                      
+      2020          3        1.5          0        1.5 01-SEP-08                                                                                      
+      7777         12        4.5          3          0 01-SEP-10                                                                                      
+      3333          9        1.5          0        1.5 01-SEP-09                                                                                      
+      2222          4        1.5          0        1.5 01-SEP-09                                                                                      
+      3030          8          0        1.5        1.5 01-SEP-09                                                                                      
+      1111          8          3          0          0 01-SEP-09                                                                                      
+      4444          5          3          0          0 01-SEP-10                                                                                      
+      4444          1          3        1.5        1.5 01-SEP-11                                                                                      
+      3333          2        1.5        1.5          3 01-SEP-08                                                                                      
+
+19 rows selected.
+
+SQL> select *
+  2  from plan_docente
+  3  order by ff desc;
+
+       DNI        CAS        CTA        CPA        CLA FI        FF                                                                                   
+---------- ---------- ---------- ---------- ---------- --------- ---------                                                                            
+      4444          1          3        1.5        1.5 01-SEP-11                                                                                      
+      3333          2        1.5        1.5          3 01-SEP-08                                                                                      
+      7777         12        4.5          3          0 01-SEP-10                                                                                      
+      2020          3        1.5          0        1.5 01-SEP-08                                                                                      
+      8888         11          6          0          0 01-SEP-09                                                                                      
+      5555          6          3          3          0 31-MAR-10                                                                                      
+      9999          7          3          3          0 01-SEP-10                                                                                      
+      4444          5          3          0          0 01-SEP-10                                                                                      
+      1111          8          3          0          0 01-SEP-09                                                                                      
+      3030          8          0        1.5        1.5 01-SEP-09                                                                                      
+      2222          4        1.5          0        1.5 01-SEP-09                                                                                      
+      3333          9        1.5          0        1.5 01-SEP-09                                                                                      
+      1010          9        1.5          0        1.5 01-SEP-09                                                                                      
+      6666         10          3        1.5        1.5 01-SEP-08 31-AUG-11                                                                            
+      4444          4        1.5          0        1.5 01-SEP-08 31-AUG-10                                                                            
+      1010          9          3          0          3 01-SEP-08 31-AUG-09                                                                            
+      1111          8          3        1.5        1.5 01-SEP-07 31-AUG-09                                                                            
+      1010          2        1.5        1.5          3 01-SEP-05 31-AUG-08                                                                            
+      2222          3        1.5          0        1.5 01-SEP-06 31-AUG-07                                                                            
+
+19 rows selected.
+
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> select *
+  2  from plan_docente
+  3  order by ff desc;
+
+       DNI        CAS        CTA        CPA        CLA FI        FF                                                                                   
+---------- ---------- ---------- ---------- ---------- --------- ---------                                                                            
+      4444          1          3        1.5        1.5 01-SEP-11                                                                                      
+      3333          2        1.5        1.5          3 01-SEP-08                                                                                      
+      7777         12        4.5          3          0 01-SEP-10                                                                                      
+      2020          3        1.5          0        1.5 01-SEP-08                                                                                      
+      8888         11          6          0          0 01-SEP-09                                                                                      
+      5555          6          3          3          0 31-MAR-10                                                                                      
+      9999          7          3          3          0 01-SEP-10                                                                                      
+      4444          5          3          0          0 01-SEP-10                                                                                      
+      1111          8          3          0          0 01-SEP-09                                                                                      
+      3030          8          0        1.5        1.5 01-SEP-09                                                                                      
+      2222          4        1.5          0        1.5 01-SEP-09                                                                                      
+      3333          9        1.5          0        1.5 01-SEP-09                                                                                      
+      1010          9        1.5          0        1.5 01-SEP-09                                                                                      
+      6666         10          3        1.5        1.5 01-SEP-08 31-AUG-11                                                                            
+      4444          4        1.5          0        1.5 01-SEP-08 31-AUG-10                                                                            
+      1010          9          3          0          3 01-SEP-08 31-AUG-09                                                                            
+      1111          8          3        1.5        1.5 01-SEP-07 31-AUG-09                                                                            
+      1010          2        1.5        1.5          3 01-SEP-05 31-AUG-08                                                                            
+      2222          3        1.5          0        1.5 01-SEP-06 31-AUG-07                                                                            
+
+19 rows selected.
+
+SQL> select p
+  2  ;
+
+*
+ERROR at line 2:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> select * from profesor;
+
+       DNI P                                                                   CAR CAT                                                                
+---------- ------------------------------------------------------------ ---------- -----                                                              
+      1111 Juan                                                                  6 cu                                                                 
+      2222 Carlos                                                                7 tu                                                                 
+      3333 Pedro                                                                 4 teu                                                                
+      4444 Maria                                                                 7 tu                                                                 
+      5555 Ivan                                                                  1 ceu                                                                
+      6666 Carmen                                                                3 cd                                                                 
+      7777 Mario                                                                 2 tu                                                                 
+      8888 Francisco                                                             5 tu                                                                 
+      9999 Angela                                                                8 teu                                                                
+      1010 David                                                                 4 tu                                                                 
+      2020 Soledad                                                               7 cu                                                                 
+      3030 Jose Manuel                                                           6 teu                                                                
+
+12 rows selected.
+
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> select p
+  2  from profesor natural join asignatura
+  3  where ( a like ('Optimizacion') and (t like 'GPII');
+where ( a like ('Optimizacion') and (t like 'GPII')
+          *
+ERROR at line 3:
+ORA-00907: missing right parenthesis 
+
+
+SQL> where (( a like ('Optimizacion') and (t like 'GPII'));
+SP2-0734: unknown command beginning "where (( a..." - rest of line ignored.
+SQL> where (( a like ('Optimizacion') and (t like ('GPII')));
+SP2-0734: unknown command beginning "where (( a..." - rest of line ignored.
+SQL> where ( a like ('Optimizacion') and (t like ('GPII'));
+SP2-0734: unknown command beginning "where ( a ..." - rest of line ignored.
+SQL> where  a like ('Optimizacion') and t like ('GPII');
+SP2-0734: unknown command beginning "where  a l..." - rest of line ignored.
+SP2-0044: For a list of known commands enter HELP
+and to leave enter EXIT.
+SQL> select p
+  2  from profesor natural join asignatura
+  3  where  a like ('Optimizacion') and t like ('GPII');
+
+no rows selected
+
+SQL> select p
+  2  from profesor natural join asignatura
+  3  where  a like ('Optimizacion') and t like ('GII');
+
+no rows selected
+
+SQL> where  a like ('Optimizacion') and t like ('gii');
+SP2-0734: unknown command beginning "where  a l..." - rest of line ignored.
+SQL> select p
+  2  from profesor natural join asignatura
+  3  where  a like ('Opt%') and t like ('G%');
+
+P                                                                                                                                                     
+------------------------------------------------------------                                                                                          
+Juan                                                                                                                                                  
+Jose Manuel                                                                                                                                           
+
+SQL> select p
+  2  from profesor natural join departamento
+  3  where  d like (%Fundamental%);
+where  d like (%Fundamental%)
+               *
+ERROR at line 3:
+ORA-00911: invalid character 
+
+
+SQL> select p
+  2  from profesor natural join departamento
+  3  where  d like ('%Fundamental%');
+
+P                                                                                                                                                     
+------------------------------------------------------------                                                                                          
+Juan                                                                                                                                                  
+Carlos                                                                                                                                                
+Pedro                                                                                                                                                 
+Maria                                                                                                                                                 
+Ivan                                                                                                                                                  
+Carmen                                                                                                                                                
+Mario                                                                                                                                                 
+Francisco                                                                                                                                             
+Angela                                                                                                                                                
+David                                                                                                                                                 
+Soledad                                                                                                                                               
+Jose Manuel                                                                                                                                           
+
+12 rows selected.
+
+SQL> select p
+  2  from profesor natural join asignatura
+  3  where  a like ('Optimizacion') and t like ('G%')
+  4  order by a;
+
+P                                                                                                                                                     
+------------------------------------------------------------                                                                                          
+Jose Manuel                                                                                                                                           
+Juan                                                                                                                                                  
+
+SQL> select p
+  2  from profesor natural join departamento
+  3  where  d like ('Matematica Fundamental')
+  4  order by d desc;
+
+P                                                                                                                                                     
+------------------------------------------------------------                                                                                          
+Juan                                                                                                                                                  
+Carlos                                                                                                                                                
+Pedro                                                                                                                                                 
+Maria                                                                                                                                                 
+Ivan                                                                                                                                                  
+Jose Manuel                                                                                                                                           
+Mario                                                                                                                                                 
+Francisco                                                                                                                                             
+Angela                                                                                                                                                
+David                                                                                                                                                 
+Soledad                                                                                                                                               
+Carmen                                                                                                                                                
+
+12 rows selected.
+
+SQL> select a
+  2  from asignatura
+  3  where (select dni
+  4  from profesor
+  5  where dni = 1010);
+where dni = 1010)
+                *
+ERROR at line 5:
+ORA-00936: missing expression 
+
+
+SQL> select a
+  2  from asignatura
+  3  where (select dni
+  4  ;
+where (select dni
+       *
+ERROR at line 3:
+ORA-00936: missing expression 
+
+
+SQL> select a
+  2  from asignatura
+  3  where cas in (select cas
+  4  from profesor
+  5  where dni = 1010);
+
+A                                                                                                                                                     
+-----------------------------------------------------------                                                                                           
+Bases de datos                                                                                                                                        
+Inteligencia Artificial                                                                                                                               
+Almacenes de Datos                                                                                                                                    
+Mineria de datos                                                                                                                                      
+Informatica Basica                                                                                                                                    
+Algebra                                                                                                                                               
+Calculo                                                                                                                                               
+Optimizacion                                                                                                                                          
+Gestion de Riesgos                                                                                                                                    
+Astronomia                                                                                                                                            
+Ensenanza de la matematica                                                                                                                            
+Analisis Complejo                                                                                                                                     
+
+12 rows selected.
+
+SQL> select cas
+  2  from plan_docente
+  3  where cas in (select cas
+  4  from profesor
+  5  where dni = 1010);
+
+       CAS                                                                                                                                            
+----------                                                                                                                                            
+         2                                                                                                                                            
+         9                                                                                                                                            
+         9                                                                                                                                            
+         8                                                                                                                                            
+         8                                                                                                                                            
+         3                                                                                                                                            
+         3                                                                                                                                            
+         4                                                                                                                                            
+         8                                                                                                                                            
+         2                                                                                                                                            
+         9                                                                                                                                            
+         1                                                                                                                                            
+         4                                                                                                                                            
+         5                                                                                                                                            
+         6                                                                                                                                            
+        10                                                                                                                                            
+        12                                                                                                                                            
+        11                                                                                                                                            
+         7                                                                                                                                            
+
+19 rows selected.
+
+SQL> select a
+  2  from asignatura
+  3  where cas in (select cas
+  4  from plan_docente
+  5  where dni = 1010);
+
+A                                                                                                                                                     
+-----------------------------------------------------------                                                                                           
+Inteligencia Artificial                                                                                                                               
+Gestion de Riesgos                                                                                                                                    
+
+SQL> select a
+  2  from asignatura
+  3  where cas in (select cas
+  4  from plan_docente
+  5  where dni in (select dni
+  6  from profesor
+  7  where p like ('David'));
+where p like ('David'))
+                      *
+ERROR at line 7:
+ORA-00907: missing right parenthesis 
+
+
+SQL> select a
+  2  from asignatura
+  3  where cas in (select cas
+  4  from plan_docente
+  5  where dni in (select dni
+  6  from profesor
+  7  where p like ('David')));
+
+A                                                                                                                                                     
+-----------------------------------------------------------                                                                                           
+Inteligencia Artificial                                                                                                                               
+Gestion de Riesgos                                                                                                                                    
+
+SQL> select car
+  2  from area
+  3  where cd in (selec cd
+  4  from departamento
+  5  where d like ('Estadistica, Investigacion Operativa y Computacion')));
+where cd in (selec cd
+                   *
+ERROR at line 3:
+ORA-00907: missing right parenthesis 
+
+
+SQL> select car
+  2  from area
+  3  where cd in (select cd
+  4  from departamento
+  5  where d like ('Estadistica, Investigacion Operativa y Computacion')));
+where d like ('Estadistica, Investigacion Operativa y Computacion')))
+                                                                    *
+ERROR at line 5:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> select car
+  2  from area
+  3  where cd in (select cd
+  4  from departamento
+  5  where d like ('Estadistica, Investigacion Operativa y Computacion'));
+
+no rows selected
+
+SQL> select car
+  2  from area
+  3  where cd in (select cd
+  4  from departamento
+  5  where d like ('Estadi%'));
+
+       CAR                                                                                                                                            
+----------                                                                                                                                            
+         4                                                                                                                                            
+         6                                                                                                                                            
+         7                                                                                                                                            
+
+SQL> commit work
+  2  ;
+
+Commit complete.
+
+SQL> select a
+  2  from asignatura
+  3  where cas in (select cas
+  4  from plan_docente
+  5  where ff is null and dni in (select dni
+  6  from profesor
+  7  where cat like ('cu')));
+
+A                                                                                                                                                     
+-----------------------------------------------------------                                                                                           
+Almacenes de Datos                                                                                                                                    
+Optimizacion                                                                                                                                          
+
+SQL> spool off
